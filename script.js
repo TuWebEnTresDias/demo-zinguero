@@ -48,4 +48,28 @@
   nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
     nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Abrir menú');
   }));
+
+  const header = document.querySelector('.header');
+  const updateHeaderDepth = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', updateHeaderDepth, { passive: true });
+  updateHeaderDepth();
+
+  const revealTargets = document.querySelectorAll('.service-card, .manifesto-image, .manifesto-copy, .photo-card, .steps li, .testimonial-card, .faq-list details');
+  revealTargets.forEach((element, index) => {
+    element.classList.add('reveal');
+    element.style.setProperty('--reveal-delay', `${(index % 4) * 75}ms`);
+  });
+  const showAll = () => revealTargets.forEach(element => element.classList.add('is-visible'));
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    showAll();
+  } else {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -36px 0px' });
+    revealTargets.forEach(element => revealObserver.observe(element));
+  }
 })();
