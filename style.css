@@ -32,3 +32,51 @@ body{font-size:16px}
 .contact-actions small{font-size:.8rem;color:#d7e0d7}
 footer{font-size:.8rem;color:#e0e7df}
 @media(max-width:700px){.demo-note{font-size:.61rem}.eyebrow{font-size:.68rem}.hero-lead{font-size:1.05rem}.hero-disclaimer{font-size:.82rem}.button{font-size:.86rem}.section-note{font-size:.65rem}.manifesto-image>span{font-size:.59rem}.contact-top>span:last-child,.contact-bottom{font-size:.59rem}}
+
+/* Pulido visual: profundidad sutil, estados cuidados y entradas progresivas */
+.header{transition:background .28s ease,box-shadow .28s ease}
+.header.is-scrolled{background:rgba(244,242,236,.9);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(16,36,31,.09)}
+.hero-content{animation:hero-enter .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes hero-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.button{box-shadow:0 5px 14px rgba(16,36,31,.08)}
+.button-primary,.button-lime{box-shadow:0 9px 24px rgba(216,237,131,.18)}
+.button:active{transform:translateY(0) scale(.985)}
+.service-card{position:relative;box-shadow:0 0 0 rgba(16,36,31,0);transition:transform .32s cubic-bezier(.2,.7,.2,1),box-shadow .32s ease,background .25s ease}
+.service-card:hover{z-index:2;transform:translateY(-5px);background:#fffefa;box-shadow:0 18px 42px rgba(16,36,31,.13)}
+.service-icon{transition:transform .32s cubic-bezier(.2,.7,.2,1),color .25s ease}
+.service-card:hover .service-icon{transform:translateY(-3px) rotate(-4deg);color:#477759}
+.service-card>a span,.text-link span,.step-arrow{display:inline-block;transition:transform .25s ease}
+.service-card>a:hover span,.text-link:hover span{transform:translate(3px,-3px)}
+.photo-card{border:1px solid rgba(16,36,31,.08);box-shadow:0 10px 28px rgba(16,36,31,.09);transition:transform .38s cubic-bezier(.2,.7,.2,1),box-shadow .38s ease}
+.photo-card img{transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .45s ease;filter:saturate(.86)}
+.photo-card:hover{transform:translateY(-6px);box-shadow:0 24px 52px rgba(16,36,31,.19)}
+.photo-card:hover img{transform:scale(1.045);filter:saturate(1)}
+.photo-card:after{transition:opacity .35s ease}
+.photo-card:hover:after{opacity:.9}
+.manifesto-image{overflow:hidden}
+.manifesto-image img{transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .6s ease}
+.manifesto-image:hover img{transform:scale(1.025);filter:brightness(.78) saturate(.82)}
+.manifesto-copy .text-link{position:relative;z-index:1}
+.steps li{transition:transform .28s ease,border-color .28s ease}
+.steps li:hover{transform:translateX(5px);border-color:#96a895}
+.steps li:hover .step-arrow{transform:translate(3px,-3px)}
+.testimonial-card{box-shadow:0 8px 24px rgba(16,36,31,.045);transition:transform .32s ease,box-shadow .32s ease}
+.testimonial-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(16,36,31,.1)}
+.faq-list summary{transition:color .2s ease}
+.faq-list summary:hover{color:var(--green)}
+.faq-list summary:focus-visible,.button:focus-visible,.nav a:focus-visible,.text-link:focus-visible,footer a:focus-visible{outline:3px solid #a2bf57;outline-offset:4px}
+.quote-band{position:relative;overflow:hidden}
+.quote-band:before,.quote-band:after{content:"";position:absolute;width:28rem;height:28rem;border:1px solid #ffffff16;border-radius:50%;pointer-events:none}
+.quote-band:before{left:-12rem;top:-20rem}
+.quote-band:after{right:-13rem;bottom:-22rem;width:36rem;height:36rem}
+.quote-band>*{position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .72s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms),transform .72s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(max-width:700px){
+  .service-card:hover,.photo-card:hover,.testimonial-card:hover{transform:translateY(-2px)}
+  .steps li:hover{transform:none}
+  .manifesto-image:hover img{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
+}
