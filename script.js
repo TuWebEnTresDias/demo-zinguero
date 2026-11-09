@@ -1,6 +1,6 @@
 (() => {
   const params = (() => {
-    const local = new URLSearchParams(location.search);
+    const local = new URLSearchParams(window.__DEMO_PARAMS__ ?? location.search);
     if (local.toString()) return local;
     try { if (parent !== window) return new URLSearchParams(parent.location.search); } catch (_) { /* iframe cross-origin */ }
     return local;
